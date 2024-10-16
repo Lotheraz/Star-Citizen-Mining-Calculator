@@ -6,7 +6,8 @@ namespace MiningCalc
 {
     internal class Program
     {
-        static string seperator = "------------------------------------------------------------------------------------------------------------------------";
+        // Dynamically create a separator string with 90 dashes
+        static string separator = new string('-', 120);
 
         static void Main(string[] args)
         {
@@ -19,8 +20,10 @@ namespace MiningCalc
                 try
                 {
                     loop(out isGoing);
-                }catch(Exception kuken){
-                    Console.WriteLine(kuken.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
@@ -30,8 +33,8 @@ namespace MiningCalc
             StringBuilder sb = new StringBuilder();
             int maxAmount = Enum.GetValues(typeof(RockTypesEnum)).Length;
             sb.AppendLine($"Please enter the type of rock you have found corresponding to the correct number from 1 to {maxAmount}, or 0 to close the program.");
-            sb.AppendLine(seperator);
-            sb.AppendLine("Press 0 to exit the proram");
+            sb.AppendLine(separator);  // Use the dynamically generated separator
+            sb.AppendLine("Press 0 to exit the program");
             foreach (RockTypesEnum rockType in Enum.GetValues(typeof(RockTypesEnum)))
             {
                 sb.AppendLine($"Press {(int)rockType} for {rockType}");
